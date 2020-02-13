@@ -1,0 +1,195 @@
+localmachine:
+  logger:
+    level: debug
+    name: woo-api-logs
+  aws:
+    connection:
+      region: us-east-1
+      accessKeyId: DUMMY
+      secretAccessKey: DUMMY
+    sqs:
+      endpoint: 'http://localhost:4576'
+      inbound_queue: local_ecom_to_prod
+      outbound_queue: local_prod_to_ecom
+      inbound_queue_url: 'http://localstack:4576/queue/local_ecom_to_prod'
+      outbound_queue_url: 'http://localstack:4576/queue/local_prod_to_ecom'
+      batch_size: 1
+      wait_time_seconds: 5
+    s3:
+      endpoint: 'http://localhost:4572'
+      inbound_bucket: local-ecom-to-prod
+      outbound_bucket: local-prod-to-ecom
+    cloudwatch:
+      logs:
+        endpoint: 'http://localhost:4586'
+        log_group: /fracture/local/woo-transactions
+        log_stream: fulfillment-tracking
+    sns:
+      endpoint: http://localhost:4575
+      topic_arn: arn:aws:sns:us-east-1:123456789012:fracture-local-fulfillment-actions
+test:
+  logger:
+    level: fatal
+    name: woo-api-logs
+  aws:
+    connection:
+      region: us-east-1
+      accessKeyId: DUMMY
+      secretAccessKey: DUMMY
+    sqs:
+      endpoint: 'http://TEST_HOST:4576'
+      inbound_queue: test_ecom_to_prod
+      outbound_queue: test_prod_to_ecom
+      inbound_queue_url: 'http://TEST_HOST:4576/queue/test_ecom_to_prod'
+      outbound_queue_url: 'http://TEST_HOST:4576/queue/test_prod_to_ecom'
+      batch_size: 1
+      wait_time_seconds: 5
+    s3:
+      endpoint: 'http://TEST_HOST:4572'
+      inbound_bucket: test-ecom-to-prod
+      outbound_bucket: test-prod-to-ecom
+    cloudwatch:
+      logs:
+        endpoint: 'http://TEST_HOST:4586'
+        log_group: /fracture/test/woo-transactions
+        log_stream: fulfillment-tracking
+    sns:
+      endpoint: http://TEST_HOST:4575
+      topic_arn: arn:aws:sns:us-east-1:123456789012:fracture-test-fulfillment-actions
+production:
+  logger:
+    level: info
+    name: woo-api-logs
+  aws:
+    connection:
+      region: us-east-1
+      accessKeyId: DUMMY
+      secretAccessKey: DUMMY
+    sqs:
+      endpoint: 'https://sqs.us-east-1.amazonaws.com/601762473314/'
+      inbound_queue: fracture-prod-wp-to-prod
+      outbound_queue: fracture-prod-prod-to-wp
+      inbound_queue_url: 'https://sqs.us-east-1.amazonaws.com/601762473314/fracture-prod-wp-to-prod'
+      outbound_queue_url: 'https://sqs.us-east-1.amazonaws.com/601762473314/fracture-prod-prod-to-wp'
+      batch_size: 10
+      wait_time_seconds: 5
+    s3:
+      endpoint: 'http://localhost:4572'
+      inbound_bucket: production_ecom_to_prod
+      outbound_bucket: production_to_ecom
+    cloudwatch:
+      logs:
+        endpoint: null
+        log_group: /fracture/fulfillment-transactions/production
+        log_stream: ecom-prod-transaction-history
+    sns:
+      endpoint: null
+      topic_arn: arn:aws:sns:us-east-1:601762473314:fracture-prod-fulfillment-actions
+staging:
+  logger:
+    level: info
+    name: woo-api-logs
+  aws:
+    connection:
+      region: us-east-1
+      accessKeyId: DUMMY
+      secretAccessKey: DUMMY
+    sqs:
+      endpoint: 'https://sqs.us-east-1.amazonaws.com/601762473314/'
+      inbound_queue: fracture-staging-wp-to-prod
+      outbound_queue: fracture-staging-prod-to-wp
+      inbound_queue_url: 'https://sqs.us-east-1.amazonaws.com/601762473314/fracture-staging-wp-to-prod'
+      outbound_queue_url: 'https://sqs.us-east-1.amazonaws.com/601762473314/fracture-staging-prod-to-wp'
+      batch_size: 10
+      wait_time_seconds: 5
+    cloudwatch:
+      logs:
+        endpoint: null
+        log_group: /fracture/fulfillment-transactions/staging
+        log_stream: ecom-prod-transaction-history
+    sns:
+      endpoint: null
+      topic_arn: arn:aws:sns:us-east-1:601762473314:fracture-stage-fulfillment-actions
+development:
+  logger:
+    level: info
+    name: woo-api-logs
+  aws:
+    connection:
+      region: us-east-1
+      accessKeyId: DUMMY
+      secretAccessKey: DUMMY
+    sqs:
+      endpoint: 'https://sqs.us-east-1.amazonaws.com/601762473314/'
+      inbound_queue: fracture-dev-wp-to-prod
+      outbound_queue: fracture-dev-prod-to-wp
+      inbound_queue_url: 'https://sqs.us-east-1.amazonaws.com/601762473314/fracture-dev-wp-to-prod'
+      outbound_queue_url: 'https://sqs.us-east-1.amazonaws.com/601762473314/fracture-dev-prod-to-wp'
+      batch_size: 10
+      wait_time_seconds: 5
+    s3:
+      endpoint: 'http://localhost:4572'
+      inbound_bucket: development_ecom_to_prod
+      outbound_bucket: development_prod_to_ecom
+    cloudwatch:
+      logs:
+        endpoint: null
+        log_group: /fracture/fulfillment-transactions/development
+        log_stream: ecom-prod-transaction-history
+    sns:
+      endpoint: null
+      topic_arn: arn:aws:sns:us-east-1:601762473314:fracture-dev-fulfillment-actions
+turing:
+  logger:
+    level: info
+    name: woo-api-logs
+  aws:
+    connection:
+      region: us-east-1
+      accessKeyId: DUMMY
+      secretAccessKey: DUMMY
+    sqs:
+      endpoint: 'https://queue.amazonaws.com/601762473314/'
+      inbound_queue: fracture-turing-wp-to-prod
+      outbound_queue: fracture-turing-prod-to-wp
+      inbound_queue_url: 'https://queue.amazonaws.com/601762473314/fracture-turing-wp-to-prod'
+      outbound_queue_url: 'https://queue.amazonaws.com/601762473314/fracture-turing-prod-to-wp'
+      batch_size: 10
+      wait_time_seconds: 5
+    cloudwatch:
+      logs:
+        endpoint: null
+        log_group: /fracture/fulfillment-transactions/turing
+        log_stream: ecom-prod-transaction-history
+    sns:
+      endpoint: null
+      topic_arn: arn:aws:sns:us-east-1:601762473314:fracture-turing-fulfillment-actions
+knuth:
+  logger:
+    level: info
+    name: woo-api-logs
+  aws:
+    connection:
+      region: us-east-1
+      accessKeyId: DUMMY
+      secretAccessKey: DUMMY
+    sqs:
+      endpoint: 'https://queue.amazonaws.com/601762473314/'
+      inbound_queue: fracture-knuth-wp-to-prod
+      outbound_queue: fracture-knuth-prod-to-wp
+      inbound_queue_url: 'https://queue.amazonaws.com/601762473314/fracture-knuth-wp-to-prod'
+      outbound_queue_url: 'https://queue.amazonaws.com/601762473314/fracture-knuth-prod-to-wp'
+      batch_size: 10
+      wait_time_seconds: 5
+    s3:
+      endpoint: 'http://localhost:4572'
+      inbound_bucket: development_ecom_to_prod
+      outbound_bucket: development_prod_to_ecom
+    cloudwatch:
+      logs:
+        endpoint: null
+        log_group: /fracture/fulfillment-transactions/knuth
+        log_stream: ecom-prod-transaction-history
+    sns:
+      endpoint: null
+      topic_arn: arn:aws:sns:us-east-1:601762473314:fracture-knuth-fulfillment-actions

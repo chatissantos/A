@@ -1,0 +1,20 @@
+{
+  "name": "com.fractureme.aws",
+  "version": "0.0.0",
+  "description": "Fracture's library for accessing aws services.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test jest --forceExit test"
+  },
+  "keywords": [
+    "aws",
+    "cloudwatch",
+    "sns",
+    "sqs"
+  ],
+  "author": "chatis@becurity.com",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.437.0"
+  }
+}
