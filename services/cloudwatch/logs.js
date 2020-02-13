@@ -1,7 +1,7 @@
 const {
   AWS,
   awsConfig
-} = require('../../../config/aws')
+} = require('../../config/aws')
 const cwLogsConfig = Object.assign({}, awsConfig.cloudwatch.logs)
 
 const CloudwatchLogger = () => {
