@@ -15,6 +15,7 @@
   "author": "chatis@becurity.com",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.437.0"
+    "aws-sdk": "^2.437.0",
+    "js-yaml": "^3.13.1"
   }
 }
